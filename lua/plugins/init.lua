@@ -151,7 +151,7 @@ return require("packer").startup({
         use({
             "neovim/nvim-lspconfig",
             config = function()
-                require("plugins.configs.lspconfig")
+                require("plugins.configs.lspconfig").setup()
             end,
             requires = {
                 {
@@ -163,7 +163,11 @@ return require("packer").startup({
         use({
             "simrat39/rust-tools.nvim",
             config = function()
-                require("rust-tools").setup()
+                require("rust-tools").setup({
+                    server = {
+                        on_attach = require("plugins.configs.lspconfig").on_attach
+                    }
+                })
             end,
         })
 
