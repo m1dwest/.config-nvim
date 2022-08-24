@@ -1,6 +1,6 @@
 vim.api.nvim_create_autocmd("BufWritePost", {
     group = vim.api.nvim_create_augroup("Packer", { clear = true }),
-    pattern = "init.lua",
+    pattern = "plugins.lua",
     command = "source <afile> | PackerCompile",
 })
 
@@ -39,7 +39,7 @@ return require("packer").startup({
             "lewis6991/gitsigns.nvim",
             event = "BufRead",
             config = function()
-                require("plugins.configs.gitsigns")
+                require("configs.gitsigns")
             end,
         })
 
@@ -52,18 +52,18 @@ return require("packer").startup({
 
         -- ui
 
-        require("plugins.configs.dashboard-nvim")
+        require("configs.dashboard-nvim")
         use({
             "glepnir/dashboard-nvim",
             config = function()
-                require("plugins.configs.dashboard-nvim").setup()
+                require("configs.dashboard-nvim").setup()
             end,
         })
 
         use({
             "kyazdani42/nvim-tree.lua",
             config = function()
-                require("plugins.configs.nvim-tree")
+                require("configs.nvim-tree")
             end,
         })
 
@@ -72,7 +72,7 @@ return require("packer").startup({
                 "nvim-lualine/lualine.nvim",
                 event = "BufEnter",
                 config = function()
-                    require("plugins.configs.lualine")
+                    require("configs.lualine")
                 end,
             },
             {
@@ -142,7 +142,7 @@ return require("packer").startup({
             "akinsho/bufferline.nvim",
             requires = "kyazdani42/nvim-web-devicons",
             config = function()
-                require("plugins.configs.bufferline")
+                require("configs.bufferline")
             end,
         })
 
@@ -151,7 +151,7 @@ return require("packer").startup({
         use({
             "neovim/nvim-lspconfig",
             config = function()
-                require("plugins.configs.lspconfig").setup()
+                require("configs.lspconfig").setup()
             end,
             requires = {
                 {
@@ -165,7 +165,7 @@ return require("packer").startup({
             config = function()
                 require("rust-tools").setup({
                     server = {
-                        on_attach = require("plugins.configs.lspconfig").on_attach
+                        on_attach = require("configs.lspconfig").on_attach
                     }
                 })
             end,
@@ -176,7 +176,7 @@ return require("packer").startup({
                 "hrsh7th/nvim-cmp",
                 event = "InsertEnter",
                 config = function()
-                    require("plugins.configs.nvim-cmp")
+                    require("configs.nvim-cmp")
                 end,
                 requires = {
                     {
@@ -211,7 +211,7 @@ return require("packer").startup({
             event = 'CursorHold',
             run = ':TSUpdate',
             config = function()
-                require('plugins.configs.nvim-treesitter')
+                require('configs.nvim-treesitter')
             end,
         }
         -- { 'nvim-treesitter/playground', after = 'nvim-treesitter' },
@@ -239,7 +239,7 @@ return require("packer").startup({
                 "nvim-telescope/telescope.nvim",
                 requires = { { "nvim-lua/plenary.nvim" } },
                 config = function()
-                    require("plugins.configs.telescope")
+                    require("configs.telescope")
                 end,
             },
             {
