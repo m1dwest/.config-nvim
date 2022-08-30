@@ -44,7 +44,7 @@ o.textwidth = 300
 o.ignorecase = true
 o.smartcase = true
 
-o.undofile = true
+-- o.undofile = true
 -- o.swapfile = false
 -- o.backupdir = '/tmp/'
 -- o.directory = '/tmp/'
