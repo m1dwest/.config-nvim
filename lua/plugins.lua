@@ -22,6 +22,9 @@ return require("packer").startup({
         use("saltdotac/citylights.vim")
         use("colepeters/spacemacs-theme.vim")
         use("koirand/tokyo-metro.vim")
+        use({ "rose-pine/neovim",
+            as = "rose-pine",
+        })
 
         use({
             "dracula/vim",

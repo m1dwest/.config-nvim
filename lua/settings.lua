@@ -2,7 +2,7 @@ local g = vim.g
 local o = vim.opt
 
 o.termguicolors = true
-vim.cmd [[colorscheme aquarium]]
+vim.cmd [[colorscheme rose-pine]]
 
 g.nomodeline = true
 
