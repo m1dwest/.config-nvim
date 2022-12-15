@@ -55,3 +55,5 @@ o.history = 100
 -- Better buffer splitting
 o.splitright = true
 o.splitbelow = true
+
+o.mouse = ''

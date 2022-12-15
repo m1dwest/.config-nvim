@@ -55,13 +55,13 @@ return require("packer").startup({
 
         -- ui
 
-        require("configs.dashboard-nvim")
-        use({
-            "glepnir/dashboard-nvim",
-            config = function()
-                require("configs.dashboard-nvim").setup()
-            end,
-        })
+        -- require("configs.dashboard-nvim")
+        -- use({
+        --     "glepnir/dashboard-nvim",
+        --     config = function()
+        --         require("configs.dashboard-nvim").setup()
+        --     end,
+        -- })
 
         use({
             "kyazdani42/nvim-tree.lua",
@@ -268,6 +268,13 @@ return require("packer").startup({
                 "nvim-telescope/telescope-symbols.nvim",
                 after = "telescope.nvim",
             },
+            {
+                "nvim-telescope/telescope-frecency.nvim",
+                config = function()
+                    require "telescope".load_extension("frecency")
+                end,
+                requires = { "kkharji/sqlite.lua" }
+            }
         })
 
         -- ux
