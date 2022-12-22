@@ -13,7 +13,7 @@ M.on_attach = function()
 
     vim.keymap.set("n", "<leader>a", vim.lsp.buf.code_action, { buffer = 0 })
 
-    vim.cmd [[autocmd BufWritePre * lua vim.lsp.buf.formatting_sync()]]
+    vim.cmd [[autocmd BufWritePre * lua vim.lsp.buf.format()]]
 end
 
 M.setup = function()
