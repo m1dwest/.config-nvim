@@ -2,7 +2,11 @@ local g = vim.g
 local o = vim.opt
 
 o.termguicolors = true
-vim.cmd [[colorscheme rose-pine]]
+local colorscheme = "rose-pine"
+
+if not pcall(function () vim.cmd.colorscheme(colorscheme) end) then
+    error(string.format("Colorscheme '%s' not found", colorscheme))
+end
 
 g.nomodeline = true
 
