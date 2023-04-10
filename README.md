@@ -1,5 +1,5 @@
 # NeoVim dotfiles
-NeoVim configuration files written in lua. [Nerd Fonts](https://www.nerdfonts.com) required.
+NeoVim configuration files written in lua
 
 ## Plugins list
 * [aquarium-vim](https://github.com/FrenzyExists/aquarium-vim)

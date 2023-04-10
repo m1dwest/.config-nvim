@@ -24,7 +24,7 @@ M.setup = function()
     lspconfig.clangd.setup {
         on_attach = M.on_attach,
         capabilities = capabilities,
-        cmd = { "clangd-12", "-background-index" },
+        cmd = { "clangd-15", "-background-index" },
     }
 
     lspconfig.rust_analyzer.setup {
@@ -56,7 +56,7 @@ M.setup = function()
         }
     }
 
-    require 'lspconfig'.sumneko_lua.setup {
+    require 'lspconfig'.lua_ls.setup {
         on_attach = M.on_attach,
         capabilities = capabilities,
         settings = {
