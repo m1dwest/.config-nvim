@@ -6,9 +6,9 @@ vim.api.nvim_create_autocmd("BufWritePost", {
 
 local ensure_packer = function()
     local fn = vim.fn
-    local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+    local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
     if fn.empty(fn.glob(install_path)) > 0 then
-        fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+        fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path })
         vim.cmd [[packadd packer.nvim]]
         return true
     end
@@ -35,8 +35,15 @@ return require("packer").startup({
         use("saltdotac/citylights.vim")
         use("colepeters/spacemacs-theme.vim")
         use("koirand/tokyo-metro.vim")
-        use({ "rose-pine/neovim",
+        use({
+            "rose-pine/neovim",
             as = "rose-pine",
+            config = function()
+                require("rose-pine").setup({
+                    disable_italics = true,
+                })
+                vim.cmd.colorscheme("rose-pine")
+            end,
         })
 
         use({
@@ -219,8 +226,8 @@ return require("packer").startup({
                 },
             },
             { "saadparwaiz1/cmp_luasnip", after = "nvim-cmp" },
-            { "hrsh7th/cmp-buffer", after = "nvim-cmp" },
-            { "hrsh7th/cmp-path", after = "nvim-cmp" },
+            { "hrsh7th/cmp-buffer",       after = "nvim-cmp" },
+            { "hrsh7th/cmp-path",         after = "nvim-cmp" },
         })
 
         use({

@@ -24,7 +24,7 @@ M.setup = function()
     lspconfig.clangd.setup {
         on_attach = M.on_attach,
         capabilities = capabilities,
-        cmd = { "clangd-15", "-background-index" },
+        cmd = { "clangd", "-background-index" },
     }
 
     lspconfig.rust_analyzer.setup {
