@@ -32,9 +32,19 @@ require("bufferline").setup({
     },
 })
 
+vim.cmd([[
+        augroup MyColors
+        autocmd!
+        autocmd ColorScheme * highlight BufferLineFill guibg=#100000
+        autocmd ColorScheme * highlight BufferLineSeparator guifg=#100000
+        autocmd ColorScheme * highlight BufferLineSeparatorSelected guifg=#100000
+        autocmd ColorScheme * highlight BufferLineSeparatorVisible guifg=#100000
+        augroup END
+    ]])
+
 vim.keymap.set("n", "zh", ":BufferLineCyclePrev<CR>", { silent = true })
 vim.keymap.set("n", "zl", ":BufferLineCycleNext<CR>", { silent = true })
 vim.keymap.set("n", "zH", ":BufferLineMovePrev<CR>", { silent = true })
 vim.keymap.set("n", "zL", ":BufferLineMoveNext<CR>", { silent = true })
-vim.keymap.set("n", "<leader>p", ":BufferLinePick<CR>", { silent = true })
+vim.keymap.set("n", "zp", ":BufferLinePick<CR>", { silent = true })
 vim.keymap.set("n", "<leader>c", ":BufferLinePickClose<CR>", { silent = true })

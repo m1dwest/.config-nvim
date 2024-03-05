@@ -1,7 +1,7 @@
 # NeoVim dotfiles
-NeoVim configuration files written in lua
+NeoVim configuration written in lua
 
-## Plugins list
+## Plugin list
 * [aquarium-vim](https://github.com/FrenzyExists/aquarium-vim)
 * [boo-colorscheme-nvim](https://github.com/rockerBOO/boo-colorscheme-nvim)
 * [bufferline.nvim](https://github.com/akinsho/bufferline.nvim)
