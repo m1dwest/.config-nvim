@@ -30,6 +30,17 @@ M.setup = function()
     lspconfig.rust_analyzer.setup {
         on_attach = M.on_attach,
         capabilities = capabilities,
+        settings = {
+            ['rust-analyzer'] = {
+                checkOnSave = {
+                    allFeatures = true,
+                    overrideCommand = {
+                        'cargo', 'clippy', '--workspace', '--message-format=json',
+                        '--all-targets', '--all-features'
+                    }
+                }
+            }
+        }
     }
 
     lspconfig.hls.setup {
@@ -71,6 +82,8 @@ M.setup = function()
             }
         }
     }
+
+    require 'lspconfig'.cmake.setup {}
 end
 
 return M;
