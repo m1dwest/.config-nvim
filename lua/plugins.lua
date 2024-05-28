@@ -36,15 +36,22 @@ return require("packer").startup({
         use("colepeters/spacemacs-theme.vim")
         use("koirand/tokyo-metro.vim")
         use({
-            "rose-pine/neovim",
-            as = "rose-pine",
+            "catppuccin/vim",
+            as = "catppuccin",
             config = function()
-                require("rose-pine").setup({
-                    disable_italics = true,
-                })
-                vim.cmd.colorscheme("rose-pine")
+                vim.cmd.colorscheme("catppuccin_mocha")
             end,
         })
+        -- use({
+        --     "rose-pine/neovim",
+        --     as = "rose-pine",
+        --     config = function()
+        --         require("rose-pine").setup({
+        --             disable_italics = true,
+        --         })
+        --         vim.cmd.colorscheme("rose-pine")
+        --     end,
+        -- })
 
         use({
             "dracula/vim",
@@ -102,11 +109,11 @@ return require("packer").startup({
                 "j-hui/fidget.nvim",
                 after = "lualine.nvim",
                 config = function()
-                    require("fidget").setup({
-                        text = {
-                            spinner = "dots",
-                        },
-                    })
+                    -- require("fidget").setup({
+                    --     text = {
+                    --         spinner = "dots",
+                    --     },
+                    -- })
                 end,
             },
         })
