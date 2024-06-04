@@ -31,3 +31,9 @@ map('n', '<leader>O', 'O<ESC>')
 
 -- escaping terminal mode
 map('t', '<leader><Esc>', '<C-\\><C-n>')
+
+-- delete buffer
+map('n', '<leader>bd', '<cmd>bdelete<cr>')
+
+-- switch header/source
+map('n', '<F4>', '<cmd>ClangdSwitchSourceHeader<cr>')

@@ -1,7 +1,11 @@
-vim.defer_fn(function()
-    pcall(require, "impatient")
-end, 0)
+local load = function(mod)
+  package.loaded[mod] = nil
+  return require(mod)
+end
 
-require("plugins")
-require("settings")
-require("keys")
+load('settings')
+-- -- load('user.commands')
+load('keymaps')
+require('plugins')
+-- --
+pcall(vim.cmd.colorscheme, 'rose-pine')

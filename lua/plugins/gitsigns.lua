@@ -1,4 +1,8 @@
-require("gitsigns").setup({
+local plugin = {'lewis6991/gitsigns.nvim'}
+
+plugin.event = { 'BufReadPre', 'BufNewFile' }
+
+plugin.opts = {
     on_attach = function(bufnr)
         local gs = package.loaded.gitsigns
 
@@ -48,5 +52,7 @@ require("gitsigns").setup({
 
         -- Text object
         map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>")
-    end,
-})
+    end
+}
+
+return plugin
