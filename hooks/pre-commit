@@ -1,4 +1,0 @@
-#!/bin/sh
-
-nvim --headless -c 'lua require("packer_plugins")' +qa
-git add README.md
