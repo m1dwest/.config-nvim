@@ -1,0 +1,4 @@
+#!/bin/sh
+
+nvim --headless -c 'lua require("generate_readme")' +qa
+git add README.md
