@@ -4,7 +4,11 @@ local custom_filename = {
     newfile_status = true,
 }
 
-require('lualine').setup {
+local plugin = { 'nvim-lualine/lualine.nvim' }
+plugin.dependencies = { 'nvim-tree/nvim-web-devicons' }
+plugin.event = "VeryLazy"
+
+plugin.opts = {
     options = {
         icons_enabled = true,
         theme = 'auto',
@@ -43,3 +47,5 @@ require('lualine').setup {
     inactive_winbar = {},
     extensions = { 'nvim-tree', 'fugitive', 'quickfix', 'man', 'fzf' }
 }
+
+return plugin
