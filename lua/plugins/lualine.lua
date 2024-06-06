@@ -45,7 +45,7 @@ plugin.opts = {
     },
     winbar = {},
     inactive_winbar = {},
-    extensions = { 'nvim-tree', 'fugitive', 'quickfix', 'man', 'fzf' }
+    extensions = { 'nvim-tree', 'neo-tree', 'fugitive', 'quickfix', 'man', 'fzf' }
 }
 
 return plugin
