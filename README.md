@@ -23,6 +23,7 @@ NeoVim configuration files written in lua
 * [koirand/tokyo-metro.vim](https://github.com/koirand/tokyo-metro.vim)
 * [lambdalisue/suda.vim](https://github.com/lambdalisue/suda.vim)
 * [lewis6991/gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim)
+* [moll/vim-bbye](https://github.com/moll/vim-bbye)
 * [MunifTanjim/nui.nvim](https://github.com/MunifTanjim/nui.nvim)
 * [neovim/nvim-lspconfig](https://github.com/neovim/nvim-lspconfig)
 * [NvChad/nvim-colorizer.lua](https://github.com/NvChad/nvim-colorizer.lua)

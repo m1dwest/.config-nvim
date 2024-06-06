@@ -1,19 +1,23 @@
-return {
-    {
-        'nvim-telescope/telescope.nvim',
-        dependencies = {
-            { 'nvim-lua/plenary.nvim' },
-            { 'nvim-telescope/telescope-fzf-native.nvim',
-                build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build'
-            },
-            { 'nvim-telescope/telescope-symbols.nvim' },
-            {
-              "nvim-telescope/telescope-frecency.nvim",
-              config = function()
-                require("telescope").load_extension "frecency"
-              end,
-            }
+return { 'nvim-telescope/telescope.nvim',
+    dependencies = {
+        { 'nvim-lua/plenary.nvim' },
+            {'nvim-telescope/telescope-symbols.nvim'} ,
+        {
+            'nvim-telescope/telescope-fzf-native.nvim',
+            build =
+            'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build'
+        },
+        {
+            'nvim-telescope/telescope-frecency.nvim',
+            config = function()
+                require('telescope').load_extension 'frecency'
+            end
         }
+    },
+    keys = {
+        { '<leader><C-f>', '<cmd>Telescope find_files<cr>' },
+        { '<leader><C-g>', '<cmd>Telescope live_grep<cr>' },
+        { "zZ",      '<cmd>Telescope buffers<cr>' }
     }
 }
 
@@ -34,11 +38,3 @@ return {
 --         end
 --     end
 -- })
---
--- local function map(m, k, v)
---     vim.keymap.set(m, k, v, { silent = true })
--- end
---
--- map("n", "<leader><C-f>", "<cmd>Telescope find_files<CR>");
--- map("n", "<leader><C-g>", "<cmd>Telescope live_grep<CR>");
--- map("n", "z<Space>", "<cmd>Telescope buffers<CR>");
