@@ -22,7 +22,6 @@ local user = {}
 return {
     'neovim/nvim-lspconfig',
     dependencies = {
-        { 'j-hui/fidget.nvim' },
         { 'hrsh7th/cmp-nvim-lsp' },
         { 'williamboman/mason-lspconfig.nvim' },
     },

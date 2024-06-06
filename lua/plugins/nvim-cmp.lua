@@ -62,17 +62,5 @@ return {
                 { name = "buffer" },
             }),
         })
-    end,
-    requires = {
-        {
-            "L3MON4D3/LuaSnip",
-            event = "InsertEnter",
-            requires = {
-                {
-                    "rafamadriz/friendly-snippets",
-                    event = "CursorHold",
-                },
-            },
-        },
-    },
+    end
 }

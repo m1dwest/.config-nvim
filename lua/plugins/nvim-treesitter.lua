@@ -18,8 +18,7 @@ plugin.opts = {
         'json',
         'bash',
         'yaml',
-        'javascript',
-        'typescript'
+        'javascript'
     },
     highlight = {
         enable = true,
