@@ -48,6 +48,12 @@ return {
             ensure_installed = {
                 'lua_ls',
                 'clangd',
+                'rust_analyzer',
+                -- 'hls',
+                'pyright',
+                'efm',
+                'tsserver',
+                'bashls'
             },
             handlers = {
                 -- See :help mason-lspconfig-dynamic-server-setup
@@ -103,11 +109,20 @@ return {
                             languages = {
                                 python = {
                                     { formatCommand = "black --quiet -", formatStdin = true }
+                                },
+                                bash = {
+                                    formatCommand = "shfmt -ci -s -bn", formatStdin = true
                                 }
                             }
                         }
                     })
-                end
+                end,
+                ['tsserver'] = function()
+                    lspconfig.tsserver.setup {}
+                end,
+                ['bashls'] = function()
+                    lspconfig.bashls.setup {}
+                end,
             }
         })
     end,
