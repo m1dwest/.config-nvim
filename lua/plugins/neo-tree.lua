@@ -274,6 +274,7 @@ return {
         })
     end,
     keys = {
-        { '<C-n>', '<cmd>Neotree toggle<cr>', desc = 'NeoTree toggle' }
+        { '<C-n>', '<cmd>Neotree toggle<cr>', desc = 'NeoTree toggle' },
+        { '<leader><C-n>', '<cmd>Neotree reveal_force_cwd<cr>', desc = 'NeoTree toggle' }
     }
 }
