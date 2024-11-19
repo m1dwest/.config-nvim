@@ -38,11 +38,27 @@ return {
         --     desc = 'LSP actions',
         --     callback = user.on_attach
         -- })
-        vim.api.nvim_create_autocmd("BufWritePost", {
+        vim.api.nvim_create_autocmd("BufWritePre", {
             callback = function()
                 vim.lsp.buf.format()
             end,
         })
+        vim.api.nvim_create_user_command('Format', function()
+            vim.lsp.buf.format()
+        end, {})
+        vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = 0 })
+        vim.keymap.set("n", "gd", vim.lsp.buf.definition, { buffer = 0 })
+        vim.keymap.set("n", "gr", vim.lsp.buf.references, { buffer = 0 })
+
+        vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, { buffer = 0 })
+        vim.keymap.set("n", "gi", vim.lsp.buf.implementation, { buffer = 0 })
+
+        vim.keymap.set("n", "<leader>dj", vim.diagnostic.goto_next, { buffer = 0 })
+        vim.keymap.set("n", "<leader>dk", vim.diagnostic.goto_prev, { buffer = 0 })
+
+        vim.keymap.set("n", "<leader>a", vim.lsp.buf.code_action, { buffer = 0 })
+
+        vim.cmd [[autocmd BufWritePre * lua vim.lsp.buf.format()]]
 
         require('mason-lspconfig').setup({
             ensure_installed = {
@@ -52,8 +68,9 @@ return {
                 -- 'hls',
                 'pyright',
                 'efm',
-                'tsserver',
-                'bashls'
+                'ts_ls',
+                'bashls',
+                'cmake'
             },
             handlers = {
                 -- See :help mason-lspconfig-dynamic-server-setup
@@ -69,7 +86,7 @@ return {
                 ['clangd'] = function()
                     lspconfig.clangd.setup({
                         capabilities = lsp_capabilities,
-                        cmd = { "clangd", "-background-index" },
+                        cmd = { "clangd", "--background-index", "--fallback-style=google" },
                     })
                 end,
                 ['rust_analyzer'] = function()
@@ -117,11 +134,17 @@ return {
                         }
                     })
                 end,
-                ['tsserver'] = function()
-                    lspconfig.tsserver.setup {}
+                ['ts_ls'] = function()
+                    lspconfig.ts_ls.setup {}
                 end,
                 ['bashls'] = function()
                     lspconfig.bashls.setup {}
+                end,
+                ['cmake'] = function()
+                    lspconfig.cmake.setup {
+                        filetypes = { "cmake" },
+                        buildDirectory = "../build",
+                    }
                 end,
             }
         })
