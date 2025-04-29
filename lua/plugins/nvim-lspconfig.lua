@@ -46,17 +46,18 @@ return {
         vim.api.nvim_create_user_command('Format', function()
             vim.lsp.buf.format()
         end, {})
-        vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = 0 })
-        vim.keymap.set("n", "gd", vim.lsp.buf.definition, { buffer = 0 })
-        vim.keymap.set("n", "gr", vim.lsp.buf.references, { buffer = 0 })
+        vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
+        vim.keymap.set("n", "gd", vim.lsp.buf.definition, {})
+        -- vim.keymap.set("n", "gD", vim.lsp.buf.declaration, {})
+        vim.keymap.set("n", "gr", vim.lsp.buf.references, {})
 
-        vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, { buffer = 0 })
-        vim.keymap.set("n", "gi", vim.lsp.buf.implementation, { buffer = 0 })
+        vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, {})
+        vim.keymap.set("n", "gi", vim.lsp.buf.implementation, {})
 
-        vim.keymap.set("n", "<leader>dj", vim.diagnostic.goto_next, { buffer = 0 })
-        vim.keymap.set("n", "<leader>dk", vim.diagnostic.goto_prev, { buffer = 0 })
+        vim.keymap.set("n", "<leader>dj", vim.diagnostic.goto_next, {})
+        vim.keymap.set("n", "<leader>dk", vim.diagnostic.goto_prev, {})
 
-        vim.keymap.set("n", "<leader>a", vim.lsp.buf.code_action, { buffer = 0 })
+        vim.keymap.set("n", "<leader>a", vim.lsp.buf.code_action, {})
 
         vim.cmd [[autocmd BufWritePre * lua vim.lsp.buf.format()]]
 
@@ -70,7 +71,8 @@ return {
                 'efm',
                 'ts_ls',
                 'bashls',
-                'cmake'
+                'cmake',
+                'gopls'
             },
             handlers = {
                 -- See :help mason-lspconfig-dynamic-server-setup

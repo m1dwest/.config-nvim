@@ -41,6 +41,7 @@ NeoVim configuration files written in lua
 * [nvim-tree/nvim-web-devicons](https://github.com/nvim-tree/nvim-web-devicons)
 * [nvim-treesitter/nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
 * [nvim-treesitter/nvim-treesitter-textobjects](https://github.com/nvim-treesitter/nvim-treesitter-textobjects)
+* [nyoom-engineering/oxocarbon.nvim](https://github.com/nyoom-engineering/oxocarbon.nvim)
 * [onsails/lspkind.nvim](https://github.com/onsails/lspkind.nvim)
 * [rainglow/vim](https://github.com/rainglow/vim)
 * [rockerBOO/boo-colorscheme-nvim](https://github.com/rockerBOO/boo-colorscheme-nvim)

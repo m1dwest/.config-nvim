@@ -8,4 +8,5 @@ load('settings')
 load('keymaps')
 require('configs.lazy')
 -- --
-pcall(vim.cmd.colorscheme, 'rose-pine')
+pcall(vim.cmd.colorscheme, 'oxocarbon')
+-- pcall(vim.cmd.colorscheme, 'rose-pine')
