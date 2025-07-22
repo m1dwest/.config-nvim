@@ -49,6 +49,7 @@ NeoVim configuration files written in lua
 * [saadparwaiz1/cmp_luasnip](https://github.com/saadparwaiz1/cmp_luasnip)
 * [saltdotac/citylights.vim](https://github.com/saltdotac/citylights.vim)
 * [simrat39/rust-tools.nvim](https://github.com/simrat39/rust-tools.nvim)
+* [sphamba/smear-cursor.nvim](https://github.com/sphamba/smear-cursor.nvim)
 * [stevearc/aerial.nvim](https://github.com/stevearc/aerial.nvim)
 * [stevearc/overseer.nvim](https://github.com/stevearc/overseer.nvim)
 * [Th3Whit3Wolf/space-nvim](https://github.com/Th3Whit3Wolf/space-nvim)
@@ -57,4 +58,5 @@ NeoVim configuration files written in lua
 * [tpope/vim-repeat](https://github.com/tpope/vim-repeat)
 * [williamboman/mason-lspconfig.nvim](https://github.com/williamboman/mason-lspconfig.nvim)
 * [williamboman/mason.nvim](https://github.com/williamboman/mason.nvim)
+* [windwp/nvim-ts-autotag](https://github.com/windwp/nvim-ts-autotag)
 * [yonlu/omni.vim](https://github.com/yonlu/omni.vim)
