@@ -28,7 +28,6 @@ return {
     cmd = { 'LspInfo', 'LspInstall', 'LspUnInstall' },
     event = { 'BufReadPre', 'BufNewFile' },
     config = function()
-        local lspconfig = require('lspconfig')
         local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities()
 
         local group = vim.api.nvim_create_augroup('lsp_cmds', { clear = true })
@@ -61,7 +60,7 @@ return {
 
         vim.cmd [[autocmd BufWritePre * lua vim.lsp.buf.format()]]
 
-        require('mason-lspconfig').setup({
+        vim.lsp.config('mason-lspconfig', {
             ensure_installed = {
                 'lua_ls',
                 'clangd',
@@ -78,7 +77,8 @@ return {
                 -- See :help mason-lspconfig-dynamic-server-setup
                 function(server)
                     -- See :help lspconfig-setup
-                    lspconfig[server].setup({
+                    --
+                    vim.lsp.config(server, {
                         capabilities = lsp_capabilities,
                     })
                 end,
@@ -86,13 +86,14 @@ return {
                     require('plugins.lsp.lua_ls')
                 end,
                 ['clangd'] = function()
-                    lspconfig.clangd.setup({
+
+                    vim.lsp.config('clangd', {
                         capabilities = lsp_capabilities,
                         cmd = { "clangd", "--background-index", "--fallback-style=google" },
                     })
                 end,
                 ['rust_analyzer'] = function()
-                    lspconfig.rust_analyzer.setup({
+                    vim.lsp.config('rust_analyzer', {
                         capabilities = lsp_capabilities,
                         settings = {
                             ['rust-analyzer'] = {
@@ -108,16 +109,15 @@ return {
                     })
                 end,
                 ['hls'] = function()
-                    lspconfig.hls.setup({
+                    vim.lsp.config('hls', {
                         filetypes = { "haskell", "lhaskell", "hs" },
                         capabilities = lsp_capabilities,
                     })
                 end,
                 ['pyright'] = function()
-                    lspconfig.pyright.setup {}
                 end,
                 ['efm'] = function()
-                    lspconfig.efm.setup({
+                    vim.lsp.config('efm', {
                         flags = {
                             debounce_text_changes = 150,
                         },
@@ -137,16 +137,14 @@ return {
                     })
                 end,
                 ['ts_ls'] = function()
-                    lspconfig.ts_ls.setup {}
                 end,
                 ['bashls'] = function()
-                    lspconfig.bashls.setup {}
                 end,
                 ['cmake'] = function()
-                    lspconfig.cmake.setup {
+                    vim.lsp.config('cmake', {
                         filetypes = { "cmake" },
                         buildDirectory = "../build",
-                    }
+                    })
                 end,
             }
         })
