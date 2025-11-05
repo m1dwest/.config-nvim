@@ -6,6 +6,7 @@ end
 load('settings')
 -- -- load('user.commands')
 load('keymaps')
+load('lsp')
 require('configs.lazy')
 -- --
 pcall(vim.cmd.colorscheme, 'oxocarbon')
