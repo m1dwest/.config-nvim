@@ -1,69 +1,91 @@
 vim.lsp.config('clangd', {
-  cmd = { "clangd", "--background-index", "--clang-tidy", "--fallback-style=google" },
-  filetypes = { 'c', 'cpp', 'cc', 'objc', 'objcpp', 'cuda' },
-  root_markers = {
-    '.clangd',
-    '.clang-tidy',
-    '.clang-format',
-    'compile_commands.json',
-    'compile_flags.txt',
-    'configure.ac',
-    '.git',
-  },
+    cmd = { "clangd", "--background-index", "--clang-tidy", "--fallback-style=google" },
+    filetypes = { 'c', 'cpp', 'cc', 'objc', 'objcpp', 'cuda' },
+    root_markers = {
+        '.clangd',
+        '.clang-tidy',
+        '.clang-format',
+        'compile_commands.json',
+        'compile_flags.txt',
+        'configure.ac',
+        '.git',
+    },
 })
 
 vim.lsp.config('lua_ls', {
-  cmd = { 'lua-language-server' },
-  filetypes = { 'lua' },
-  root_markers = {
-    '.luarc.json',
-    '.luarc.jsonc',
-    '.luacheckrc',
-    '.stylua.toml',
-    'stylua.toml',
-    'selene.toml',
-    'selene.yml',
-    '.git',
-  }
+    cmd = { 'lua-language-server' },
+    filetypes = { 'lua' },
+    root_markers = {
+        '.luarc.json',
+        '.luarc.jsonc',
+        '.luacheckrc',
+        '.stylua.toml',
+        'stylua.toml',
+        'selene.toml',
+        'selene.yml',
+        '.git',
+    }
 })
 
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = "lua",
-  callback = function()
-    vim.opt_local.expandtab = true
-    vim.opt_local.shiftwidth = 2
-    vim.opt_local.tabstop = 2
-  end,
+vim.lsp.config('yamlls', {
+    cmd = { 'yaml-language-server', '--stdio' },
+    filetypes = { 'yaml', 'yaml.docker-compose', 'yaml.gitlab', 'yaml.helm-values' },
+    root_markers = { '.git' },
+    settings = {
+        redhat = { telemetry = { enabled = false } },
+        yaml = { format = { enable = true } },
+    },
+    on_init = function(client)
+        --- https://github.com/neovim/nvim-lspconfig/pull/4016
+        --- Since formatting is disabled by default if you check `client:supports_method('textDocument/formatting')`
+        --- during `LspAttach` it will return `false`. This hack sets the capability to `true` to facilitate
+        --- autocmd's which check this capability
+        client.server_capabilities.documentFormattingProvider = true
+    end,
 })
 
 vim.lsp.enable('clangd')
 vim.lsp.enable('lua_ls')
+vim.lsp.enable('yamlls')
+
+-- vim.lsp.inlay_hint.enable(true)
+-- Enable inlay hints whenever an LSP client attaches and supports them
+vim.api.nvim_create_autocmd("LspAttach", {
+    group = vim.api.nvim_create_augroup("lsp_inlay_hints", { clear = true }),
+    callback = function(args)
+        local client = vim.lsp.get_client_by_id(args.data.client_id)
+    end,
+})
 
 vim.api.nvim_create_autocmd('LspAttach', {
-  group = vim.api.nvim_create_augroup('custom.lsp', { clear = true }),
-  callback = function(args)
-    local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
+    group = vim.api.nvim_create_augroup('custom.lsp', { clear = true }),
+    callback = function(args)
+        local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
 
-    if not client:supports_method('textDocument/willSaveWaitUntil')
-        and client:supports_method('textDocument/formatting') then
-      vim.api.nvim_create_user_command("FormatDisable", function()
-        vim.b._format_disabled = true
-      end, {})
+        if not client:supports_method('textDocument/willSaveWaitUntil')
+            and client:supports_method('textDocument/formatting') then
+            vim.api.nvim_create_user_command("FormatDisable", function()
+                vim.b._format_disabled = true
+            end, {})
 
-      vim.api.nvim_create_user_command("FormatEnable", function()
-        vim.b._format_disabled = false
-      end, {})
+            vim.api.nvim_create_user_command("FormatEnable", function()
+                vim.b._format_disabled = false
+            end, {})
 
-      vim.api.nvim_create_autocmd('BufWritePre', {
-        group = vim.api.nvim_create_augroup('custom.lsp', { clear = false }),
-        buffer = args.buf,
-        callback = function()
-          if vim.b._format_disabled then return end
-          vim.lsp.buf.format({ bufnr = args.buf, id = client.id, timeout_ms = 1500 })
-        end,
-      })
-    end
-  end,
+            vim.api.nvim_create_autocmd('BufWritePre', {
+                group = vim.api.nvim_create_augroup('custom.lsp', { clear = false }),
+                buffer = args.buf,
+                callback = function()
+                    if vim.b._format_disabled then return end
+                    vim.lsp.buf.format({ bufnr = args.buf, id = client.id, timeout_ms = 1500 })
+                end,
+            })
+        end
+
+        if client and client.server_capabilities.inlayHintProvider then
+            vim.lsp.inlay_hint.enable(true, { bufnr = args.buf })
+        end
+    end,
 })
 
 -- local function peek_definition()
