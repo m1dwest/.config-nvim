@@ -27,6 +27,47 @@ vim.lsp.config('lua_ls', {
     }
 })
 
+vim.lsp.config('basedpyright-langserver', {
+    cmd = { 'basedpyright-langserver', '--stdio' },
+    filetypes = { 'python' },
+    root_markers = {
+        'pyrightconfig.json',
+        'pyproject.toml',
+        'setup.py',
+        'setup.cfg',
+        'requirements.txt',
+        'Pipfile',
+        '.git',
+    },
+    settings = {
+        basedpyright = {
+            analysis = {
+                autoSearchPaths = true,
+                useLibraryCodeForTypes = true,
+                diagnosticMode = 'openFilesOnly',
+            },
+        },
+    }
+})
+
+vim.lsp.config('ruff', {
+    cmd = { 'ruff', 'server' },
+    filetypes = { 'python' },
+    root_markers = { 'pyproject.toml', 'ruff.toml', '.ruff.toml', '.git' },
+    settings = {
+        pyright = {
+            disableOrganizeImports = true,
+        },
+        python = {
+            analysis = {
+                -- Ignore all files for analysis to exclusively use Ruff for linting
+                ignore = { '*' },
+            },
+        },
+    },
+}
+)
+
 vim.lsp.config('yamlls', {
     cmd = { 'yaml-language-server', '--stdio' },
     filetypes = { 'yaml', 'yaml.docker-compose', 'yaml.gitlab', 'yaml.helm-values' },
@@ -47,6 +88,8 @@ vim.lsp.config('yamlls', {
 vim.lsp.enable('clangd')
 vim.lsp.enable('lua_ls')
 vim.lsp.enable('yamlls')
+vim.lsp.enable('basedpyright-langserver')
+vim.lsp.enable('ruff')
 
 -- vim.lsp.inlay_hint.enable(true)
 -- Enable inlay hints whenever an LSP client attaches and supports them
