@@ -85,20 +85,39 @@ vim.lsp.config('yamlls', {
     end,
 })
 
+vim.lsp.config('neocmakelsp', {
+    cmd = { 'neocmakelsp', '--stdio' },
+    filetypes = { 'cmake' },
+    root_markers = { '.git', 'build', 'cmake' },
+    settings = {
+        single_file_support = true,
+        init_options = {
+            format = {
+                enable = true
+            },
+            lint = {
+                enable = true
+            },
+            scan_cmake_in_package = true -- default is true
+        }
+    }
+})
+
 vim.lsp.enable('clangd')
 vim.lsp.enable('lua_ls')
 vim.lsp.enable('yamlls')
 vim.lsp.enable('basedpyright-langserver')
 vim.lsp.enable('ruff')
+vim.lsp.enable('neocmakelsp')
 
 -- vim.lsp.inlay_hint.enable(true)
 -- Enable inlay hints whenever an LSP client attaches and supports them
-vim.api.nvim_create_autocmd("LspAttach", {
-    group = vim.api.nvim_create_augroup("lsp_inlay_hints", { clear = true }),
-    callback = function(args)
-        local client = vim.lsp.get_client_by_id(args.data.client_id)
-    end,
-})
+-- vim.api.nvim_create_autocmd("LspAttach", {
+--     group = vim.api.nvim_create_augroup("lsp_inlay_hints", { clear = true }),
+--     callback = function(args)
+--         local client = vim.lsp.get_client_by_id(args.data.client_id)
+--     end,
+-- })
 
 vim.api.nvim_create_autocmd('LspAttach', {
     group = vim.api.nvim_create_augroup('custom.lsp', { clear = true }),
@@ -125,9 +144,9 @@ vim.api.nvim_create_autocmd('LspAttach', {
             })
         end
 
-        if client and client.server_capabilities.inlayHintProvider then
-            vim.lsp.inlay_hint.enable(true, { bufnr = args.buf })
-        end
+        -- if client and client.server_capabilities.inlayHintProvider then
+        --     vim.lsp.inlay_hint.enable(true, { bufnr = args.buf })
+        -- end
     end,
 })
 
