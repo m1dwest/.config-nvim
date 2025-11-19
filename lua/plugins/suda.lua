@@ -1,1 +1,4 @@
-return { "lambdalisue/suda.vim" }
+return {
+    "lambdalisue/suda.vim",
+    event = "CmdlineEnter",
+}

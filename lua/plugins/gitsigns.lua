@@ -1,6 +1,6 @@
-local plugin = {'lewis6991/gitsigns.nvim'}
+local plugin = { 'lewis6991/gitsigns.nvim' }
 
-plugin.event = { 'BufReadPre', 'BufNewFile' }
+plugin.event = "VeryLazy"
 
 plugin.opts = {
     on_attach = function(bufnr)

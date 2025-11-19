@@ -1,7 +1,9 @@
-local plugin = {'nvim-treesitter/nvim-treesitter'}
+local plugin = { 'nvim-treesitter/nvim-treesitter' }
+
+plugin.event = "VeryLazy"
 
 plugin.dependencies = {
-  {'nvim-treesitter/nvim-treesitter-textobjects'}
+    { 'nvim-treesitter/nvim-treesitter-textobjects' }
 }
 
 plugin.opts = {
@@ -40,7 +42,7 @@ plugin.opts = {
 }
 
 function plugin.config(name, opts)
-  require('nvim-treesitter.configs').setup(opts)
+    require('nvim-treesitter.configs').setup(opts)
 end
 
 return plugin
