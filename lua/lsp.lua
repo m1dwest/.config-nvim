@@ -148,6 +148,16 @@ vim.api.nvim_create_autocmd('LspAttach', {
             and client.name == "rust-analyzer"
             and client.server_capabilities.inlayHintProvider then
             vim.lsp.inlay_hint.enable(true, { bufnr = args.buf })
+            vim.api.nvim_create_autocmd("InsertEnter", {
+                callback = function()
+                    vim.lsp.inlay_hint.enable(false, {bufnr = args.buf})
+                end,
+            })
+            vim.api.nvim_create_autocmd("InsertLeave", {
+                callback = function()
+                    vim.lsp.inlay_hint.enable(true, {bufnr = args.buf})
+                end,
+            })
         end
     end,
 })
