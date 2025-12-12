@@ -119,6 +119,22 @@ vim.lsp.enable('neocmakelsp')
 --     end,
 -- })
 
+local inlay_toggle = require('scripts.inlay_toggle')
+
+vim.api.nvim_create_user_command("InlayToggle", function()
+  inlay_toggle.toggle()
+end, {})
+
+vim.api.nvim_create_user_command("InlayOn", function()
+  inlay_toggle.set(true)
+end, {})
+
+vim.api.nvim_create_user_command("InlayOff", function()
+  inlay_toggle.set(false)
+end, {})
+
+vim.keymap.set("n", "<leader>ii", inlay_toggle.toggle, { desc = "Toggle inlay hints" })
+
 vim.api.nvim_create_autocmd('LspAttach', {
     group = vim.api.nvim_create_augroup('custom.lsp', { clear = true }),
     callback = function(args)
@@ -147,7 +163,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
         if client
             and client.name == "rust-analyzer"
             and client.server_capabilities.inlayHintProvider then
-            vim.lsp.inlay_hint.enable(true, { bufnr = args.buf })
+            vim.lsp.inlay_hint.enable(inlay_toggle.get(), { bufnr = args.buf })
             vim.api.nvim_create_autocmd("InsertEnter", {
                 callback = function()
                     vim.lsp.inlay_hint.enable(false, {bufnr = args.buf})
@@ -155,7 +171,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
             })
             vim.api.nvim_create_autocmd("InsertLeave", {
                 callback = function()
-                    vim.lsp.inlay_hint.enable(true, {bufnr = args.buf})
+                    vim.lsp.inlay_hint.enable(inlay_toggle.get(), {bufnr = args.buf})
                 end,
             })
         end
