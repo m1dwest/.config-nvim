@@ -1,15 +1,15 @@
 return {
-  "declancm/cinnamon.nvim",
-  version = "*", -- use latest release
+    "declancm/cinnamon.nvim",
+    version = "*", -- use latest release
     config = function()
-    require("cinnamon").setup({
-        keymaps = {
-            basic = true,
-            extra = true,
-        },
-        options = {
-            delay = 4,
-        }
-    })
-end,
+        require("cinnamon").setup({
+            keymaps = {
+                basic = true,
+                extra = false,
+            },
+            options = {
+                delay = 4,
+            }
+        })
+    end,
 }

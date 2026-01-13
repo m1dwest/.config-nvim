@@ -1,7 +1,8 @@
-return { 'nvim-telescope/telescope.nvim',
+return {
+    'nvim-telescope/telescope.nvim',
     dependencies = {
         { 'nvim-lua/plenary.nvim' },
-            {'nvim-telescope/telescope-symbols.nvim'} ,
+        { 'nvim-telescope/telescope-symbols.nvim' },
         {
             'nvim-telescope/telescope-fzf-native.nvim',
             build =
@@ -17,7 +18,7 @@ return { 'nvim-telescope/telescope.nvim',
     keys = {
         { '<leader><C-f>', '<cmd>Telescope find_files<cr>' },
         { '<leader><C-g>', '<cmd>Telescope live_grep<cr>' },
-        { "zZ",      '<cmd>Telescope buffers<cr>' }
+        { "zZ",            '<cmd>Telescope buffers<cr>' }
     }
 }
 
