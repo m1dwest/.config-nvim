@@ -23,5 +23,6 @@ return {
     },
     { 'dracula/vim',                      name = 'dracula' },
     { 'rainglow/vim',                     name = 'rainglow' },
-    { 'nyoom-engineering/oxocarbon.nvim', name = 'oxocarbon' }
+    { 'nyoom-engineering/oxocarbon.nvim', name = 'oxocarbon' },
+    { 'ilof2/posterpole.nvim',            name = 'posterpole' }
 }
