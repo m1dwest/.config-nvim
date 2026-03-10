@@ -24,5 +24,15 @@ return {
     { 'dracula/vim',                      name = 'dracula' },
     { 'rainglow/vim',                     name = 'rainglow' },
     { 'nyoom-engineering/oxocarbon.nvim', name = 'oxocarbon' },
-    { 'ilof2/posterpole.nvim',            name = 'posterpole' }
+    { 'ilof2/posterpole.nvim',            name = 'posterpole' },
+    { 'ramojus/mellifluous.nvim',         name = 'mellifluous' },
+    { 'rebelot/kanagawa.nvim',            name = 'kanagawa' },
+    { 'dasupradyumna/midnight.nvim',      name = 'midnight' },
+    { 'sainnhe/gruvbox-material',         name = 'gruvbox-material',
+        config = function()
+            require('mellifluous').setup({
+                colorset = "kanagawa_dragon",
+            })
+        end
+    }
 }
