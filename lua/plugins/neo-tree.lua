@@ -1,3 +1,15 @@
+vim.api.nvim_create_autocmd("ColorScheme", {
+    callback = function()
+        vim.api.nvim_set_hl(0, "NeoTreeWinSeparator", {
+            fg = "#5c6370",
+            bg = "NONE",
+        })
+        vim.api.nvim_set_hl(0, "WinSeparator", {
+            fg = "#5c6370",
+            bg = "NONE",
+        })
+    end,
+})
 return {
     "nvim-neo-tree/neo-tree.nvim",
     dependencies = {
@@ -26,7 +38,7 @@ return {
                     indent_size = 2,
                     padding = 1, -- extra padding on left hand side
                     -- indent guides
-                    with_markers = true,
+                    with_markers = false,
                     indent_marker = "│",
                     last_indent_marker = "└",
                     highlight = "NeoTreeIndentMarker",
@@ -37,9 +49,9 @@ return {
                     expander_highlight = "NeoTreeExpander",
                 },
                 icon = {
-                    folder_closed = "",
-                    folder_open = "",
-                    folder_empty = "",
+                    folder_closed = "▶",
+                    folder_open = "▼",
+                    folder_empty = "▷",
                     -- The next two settings are only a fallback, if you use nvim-web-devicons and configure default icons there
                     -- then these will never be used.
                     default = "*",
@@ -96,7 +108,7 @@ return {
             commands = {},
             window = {
                 position = "left",
-                width = 40,
+                width = 32,
                 mapping_options = {
                     noremap = true,
                     nowait = true,
@@ -181,7 +193,7 @@ return {
                     },
                 },
                 follow_current_file = {
-                    enabled = true,                    -- This will find and focus the file in the active buffer every time
+                    enabled = true,                     -- This will find and focus the file in the active buffer every time
                     --               -- the current file is changed while the tree is open.
                     leave_dirs_open = false,            -- `false` closes auto expanded dirs, such as with `:Neotree reveal`
                 },
@@ -270,11 +282,72 @@ return {
                         ["ot"] = { "order_by_type", nowait = false },
                     }
                 }
-            }
+            },
+            renderers = {
+                directory = {
+                    { "indent" },
+                    { "icon" },
+                    { "current_filter" },
+                    {
+                        "container",
+                        content = {
+                            { "name",          zindex = 10 },
+                            {
+                                "symlink_target",
+                                zindex = 10,
+                                highlight = "NeoTreeSymbolicLinkTarget",
+                            },
+                            { "clipboard",     zindex = 10 },
+                            { "diagnostics",   errors_only = true, zindex = 20,     align = "right",          hide_when_expanded = true },
+                            { "git_status",    zindex = 10,        align = "right", hide_when_expanded = true },
+                            { "file_size",     zindex = 10,        align = "right" },
+                            { "type",          zindex = 10,        align = "right" },
+                            { "last_modified", zindex = 10,        align = "right" },
+                            { "created",       zindex = 10,        align = "right" },
+                        },
+                    },
+                },
+                file = {
+                    { "indent" },
+                    {
+                        "container",
+                        content = {
+                            {
+                                "name",
+                                zindex = 10
+                            },
+                            {
+                                "symlink_target",
+                                zindex = 10,
+                                highlight = "NeoTreeSymbolicLinkTarget",
+                            },
+                            { "clipboard",     zindex = 10 },
+                            { "bufnr",         zindex = 10 },
+                            { "modified",      zindex = 20, align = "right" },
+                            { "diagnostics",   zindex = 20, align = "right" },
+                            { "git_status",    zindex = 10, align = "right" },
+                            { "file_size",     zindex = 10, align = "right" },
+                            { "type",          zindex = 10, align = "right" },
+                            { "last_modified", zindex = 10, align = "right" },
+                            { "created",       zindex = 10, align = "right" },
+                        },
+                    },
+                },
+                message = {
+                    { "indent", with_markers = false },
+                    { "name",   highlight = "NeoTreeMessage" },
+                },
+                terminal = {
+                    { "indent" },
+                    { "icon" },
+                    { "name" },
+                    { "bufnr" }
+                }
+            },
         })
     end,
     keys = {
-        { '<C-n>', '<cmd>Neotree toggle<cr>', desc = 'NeoTree toggle' },
+        { '<C-n>',         '<cmd>Neotree toggle<cr>',           desc = 'NeoTree toggle' },
         { '<leader><C-n>', '<cmd>Neotree reveal_force_cwd<cr>', desc = 'NeoTree toggle' }
     }
 }

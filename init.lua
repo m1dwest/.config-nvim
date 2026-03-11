@@ -9,4 +9,4 @@ load('keymaps')
 load('lsp')
 require('configs.lazy')
 -- --
-pcall(vim.cmd.colorscheme, 'mellifluous')
+pcall(vim.cmd.colorscheme, 'vague')

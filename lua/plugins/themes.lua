@@ -28,11 +28,22 @@ return {
     { 'ramojus/mellifluous.nvim',         name = 'mellifluous' },
     { 'rebelot/kanagawa.nvim',            name = 'kanagawa' },
     { 'dasupradyumna/midnight.nvim',      name = 'midnight' },
-    { 'sainnhe/gruvbox-material',         name = 'gruvbox-material',
+    {
+        'sainnhe/gruvbox-material',
+        name = 'gruvbox-material',
         config = function()
             require('mellifluous').setup({
                 colorset = "kanagawa_dragon",
             })
         end
-    }
+    },
+    {
+        'vague-theme/vague.nvim',
+        lazy = false,
+        priority = 1000,
+        config = function()
+            require("vague").setup({
+            })
+        end
+    },
 }

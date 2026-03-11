@@ -15,7 +15,7 @@ return {
                 left_trunc_marker = "",
                 right_trunc_marker = "",
                 color_icons = true,
-                show_buffer_icons = true,
+                show_buffer_icons = false,
                 show_buffer_close_icons = false,
                 show_close_icon = false,
                 show_tab_indicators = false,
@@ -25,7 +25,7 @@ return {
                 offsets = {
                     {
                         filetype = "neo-tree",
-                        text = "Neo-tree",
+                        text = "",
                         highlight = "Directory",
                         text_align = "center"
                     },

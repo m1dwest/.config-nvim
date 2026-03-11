@@ -122,15 +122,15 @@ vim.lsp.enable('neocmakelsp')
 local inlay_toggle = require('scripts.inlay_toggle')
 
 vim.api.nvim_create_user_command("InlayToggle", function()
-  inlay_toggle.toggle()
+    inlay_toggle.toggle()
 end, {})
 
 vim.api.nvim_create_user_command("InlayOn", function()
-  inlay_toggle.set(true)
+    inlay_toggle.set(true)
 end, {})
 
 vim.api.nvim_create_user_command("InlayOff", function()
-  inlay_toggle.set(false)
+    inlay_toggle.set(false)
 end, {})
 
 vim.keymap.set("n", "<leader>ii", inlay_toggle.toggle, { desc = "Toggle inlay hints" })
@@ -166,12 +166,12 @@ vim.api.nvim_create_autocmd('LspAttach', {
             vim.lsp.inlay_hint.enable(inlay_toggle.get(), { bufnr = args.buf })
             vim.api.nvim_create_autocmd("InsertEnter", {
                 callback = function()
-                    vim.lsp.inlay_hint.enable(false, {bufnr = args.buf})
+                    vim.lsp.inlay_hint.enable(false, { bufnr = args.buf })
                 end,
             })
             vim.api.nvim_create_autocmd("InsertLeave", {
                 callback = function()
-                    vim.lsp.inlay_hint.enable(inlay_toggle.get(), {bufnr = args.buf})
+                    vim.lsp.inlay_hint.enable(inlay_toggle.get(), { bufnr = args.buf })
                 end,
             })
         end
