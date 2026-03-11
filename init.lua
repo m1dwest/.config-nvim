@@ -4,9 +4,8 @@ local load = function(mod)
 end
 
 load('settings')
--- -- load('user.commands')
 load('keymaps')
 load('lsp')
-require('configs.lazy')
--- --
+require('config.lazy')
+
 pcall(vim.cmd.colorscheme, 'vague')
