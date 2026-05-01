@@ -19,8 +19,15 @@ return {
         { '<leader><C-f>', '<cmd>Telescope find_files<cr>' },
         { '<leader><C-g>', '<cmd>Telescope live_grep<cr>' },
         { "zZ",            '<cmd>Telescope buffers<cr>' }
-    }
+    },
+    config = require("telescope").setup({
+        defaults = {
+            border = true,
+            borderchars = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
+        },
+    })
 }
+
 
 -- vim.api.nvim_create_autocmd("VimEnter", {
 --     callback = function(e)
