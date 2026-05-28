@@ -121,6 +121,14 @@ vim.lsp.enable('neocmakelsp')
 
 local inlay_toggle = require('scripts.inlay_toggle')
 
+vim.api.nvim_create_user_command("LspStop", function()
+    local clients = vim.lsp.get_clients({ bufnr = vim.api.nvim_get_current_buf() })
+
+    for _, client in ipairs(clients) do
+        vim.lsp.enable(client.name, false)
+    end
+end, {})
+
 vim.api.nvim_create_user_command("InlayToggle", function()
     inlay_toggle.toggle()
 end, {})

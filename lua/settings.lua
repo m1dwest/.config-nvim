@@ -34,6 +34,7 @@ o.softtabstop = -1
 o.number = true
 o.relativenumber = true
 o.numberwidth = 5
+o.winborder = 'single'
 
 -- o.signcolumn = 'yes:2'
 o.signcolumn = 'yes'
