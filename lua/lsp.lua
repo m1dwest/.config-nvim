@@ -50,6 +50,12 @@ vim.lsp.config('basedpyright-langserver', {
     }
 })
 
+vim.lsp.config('qmlls', {
+    cmd = { 'qmlls6' },
+    filetypes = { 'qml', 'qmljs' },
+    root_markers = { '.git', '.qmlls.ini' },
+})
+
 vim.lsp.config('ruff', {
     cmd = { 'ruff', 'server' },
     filetypes = { 'python' },
@@ -108,6 +114,7 @@ vim.lsp.enable('lua_ls')
 vim.lsp.enable('yamlls')
 vim.lsp.enable('basedpyright-langserver')
 vim.lsp.enable('ruff')
+vim.lsp.enable('qmlls')
 vim.lsp.enable('neocmakelsp')
 
 -- vim.lsp.inlay_hint.enable(true)

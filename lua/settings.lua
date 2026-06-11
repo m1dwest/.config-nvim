@@ -65,6 +65,6 @@ o.mouse = ''
 
 vim.filetype.add({
     extension = {
-        qml = "javascript"
+        qml = "qml"
     }
 })
