@@ -2,6 +2,7 @@ local g = vim.g
 local o = vim.opt
 
 o.termguicolors = true
+o.background = "dark"
 -- local colorscheme = "rose-pine"
 
 -- if not pcall(function() vim.cmd.colorscheme(colorscheme) end) then
