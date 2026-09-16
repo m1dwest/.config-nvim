@@ -20,12 +20,16 @@ return {
         { '<leader><C-g>', '<cmd>Telescope live_grep<cr>' },
         { "zZ",            '<cmd>Telescope buffers<cr>' }
     },
-    config = require("telescope").setup({
+  config = function()
+    -- Put your require and setup statements INSIDE this function
+    local telescope = require('telescope') 
+    telescope.setup({
         defaults = {
             border = true,
             borderchars = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
         },
     })
+  end
 }
 
 

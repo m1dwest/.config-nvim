@@ -23,6 +23,8 @@ return {
         -- See :h blink-cmp-config-keymap for defining your own keymap
         keymap = {
             preset = 'enter',
+            ['<C-n>'] = { 'select_next', 'snippet_forward', 'fallback' },
+            ['<C-p>'] = { 'select_prev', 'snippet_backward', 'fallback' },
         },
 
         appearance = {
@@ -46,7 +48,7 @@ return {
         },
 
         fuzzy = {
-            implementation = "rust"
+            implementation = "prefer_rust"
         }
     },
     opts_extend = { "sources.default" }
